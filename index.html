@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Memory of Rory</title>
+  <title>Rory's Memories</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -32,27 +32,55 @@
       color: #333;
     }
 
-    h2 {
-        color: #555;
-        margin-top: 50px;
-        margin-bottom: 20px;
-        border-bottom: 2px solid #eee;
-        padding-bottom: 10px;
-        display: inline-block; 
+    /* === CẤU TRÚC 3 CỘT (FLEXBOX) === */
+    .media-container {
+        display: flex;
+        justify-content: space-around; /* Chia đều khoảng cách */
+        gap: 20px; /* Khoảng cách giữa các cột */
+        max-width: 1200px; 
+        margin: 50px auto; /* Căn giữa container */
     }
 
-    /* Căn giữa các block media */
-    img, audio, video {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 20px;
+    .media-column {
+        flex: 1; /* Chia đều chiều rộng cho 3 cột */
+        padding: 20px;
+        border: 1px solid #ddd;
         border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+        background-color: #ffffff;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        min-width: 0; /* Cho phép co giãn */
     }
 
-    video {
-        max-width: 80%; 
+    h2 {
+        color: #333;
+        border-bottom: 3px solid #f0f2f5;
+        padding-bottom: 10px;
+        margin-bottom: 25px;
+        text-align: center;
+    }
+    
+    /* === STYLE RIÊNG CHO TIÊU ĐỀ NHẠC === */
+    .song-title {
+        font-weight: bold;
+        margin-bottom: 15px;
+        text-align: center;
+        color: #E91E63; /* Màu hồng nổi bật */
+    }
+    
+    /* Điều chỉnh các phần tử media bên trong cột */
+    .media-column img, .media-column audio, .media-column video {
+        display: block;
+        margin: 10px auto; 
+        max-width: 100%; /* Đảm bảo media vừa với cột */
+        border-radius: 6px;
+    }
+    
+    .media-column audio {
+        max-width: 90%;
+    }
+    
+    .media-column video {
+        max-height: 250px; /* Giới hạn chiều cao video */
     }
   </style>
 </head>
@@ -64,18 +92,32 @@
     <h1>Memory of Rory</h1>
   </header>
 
-  <h2>Hình ảnh</h2>
-  <img src="images/pic1.jpg" width="350">
+  <div class="media-container">
+      
+    <div class="media-column">
+      <h2>🖼️ Hình ảnh</h2>
+      <img src="images/pic1.jpg" width="350">
+      <img src="images/pic2.jpg" width="350"> 
+      </div>
 
-  <h2>Nhạc</h2>
-  <audio controls>
-      <source src="music/song1.mp3" type="audio/mpeg">
-  </audio>
+    <div class="media-column">
+      <h2>🎧 Nhạc</h2>
+      <p class="song-title">Supernatural (Winter ver) - NewJeans (뉴진스)</p>
+      <audio controls>
+          <source src="music/song1.mp3" type="audio/mpeg">
+      </audio>
+      <p class="song-title">Bubble Gum (Band Live ver) - NewJeans (뉴진스)</p>
+       <audio controls>
+          <source src="music/song2.mp3" type="audio/mpeg">
+      </audio>
+    </div>
 
-  <h2>Video</h2>
-  <video width="480" controls>
-      <source src="videos/video1.mp4" type="video/mp4">
-  </video>
-
-</body>
+    <div class="media-column">
+      <h2>🎬 Video</h2>
+      <video width="100%" controls>
+          <source src="videos/video1.mp4" type="video/mp4">
+      </video>
+    </div>
+    
+  </div> </body>
 </html>
