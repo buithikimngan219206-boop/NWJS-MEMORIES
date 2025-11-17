@@ -35,20 +35,20 @@
     /* === CẤU TRÚC 3 CỘT (FLEXBOX) === */
     .media-container {
         display: flex;
-        justify-content: space-around; /* Chia đều khoảng cách */
-        gap: 20px; /* Khoảng cách giữa các cột */
+        justify-content: space-around;
+        gap: 20px;
         max-width: 1200px; 
-        margin: 50px auto; /* Căn giữa container */
+        margin: 50px auto;
     }
 
     .media-column {
-        flex: 1; /* Chia đều chiều rộng cho 3 cột */
+        flex: 1;
         padding: 20px;
         border: 1px solid #ddd;
         border-radius: 8px;
         background-color: #ffffff;
         box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        min-width: 0; /* Cho phép co giãn */
+        min-width: 0;
     }
 
     h2 {
@@ -58,20 +58,30 @@
         margin-bottom: 25px;
         text-align: center;
     }
+    
+    /* === STYLE RIÊNG CHO TIÊU ĐỀ ALBUM (MỚI) === */
+    .album-heading {
+        font-size: 1.4em; /* Lớn hơn tiêu đề media */
+        font-weight: bold;
+        color: #3f51b5; /* Màu xanh nổi bật cho album */
+        margin: 30px 0 15px 0;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #e0e0e0;
+    }
     
-    /* === STYLE RIÊNG CHO TIÊU ĐỀ MEDIA (ĐÃ ĐỔI TÊN) === */
-    .media-title { /* Đã đổi tên để dùng chung cho Ảnh, Nhạc, Video */
+    /* === STYLE TIÊU ĐỀ CHO ẢNH/NHẠC/VIDEO === */
+    .media-title {
         font-weight: bold;
         margin-bottom: 15px;
         text-align: center;
-        color: #E91E63; /* Màu hồng nổi bật */
+        color: #E91E63;
     }
     
-    /* Điều chỉnh các phần tử media bên trong cột */
+    /* Điều chỉnh kích thước và vị trí media */
     .media-column img, .media-column audio, .media-column video {
         display: block;
         margin: 10px auto; 
-        max-width: 100%; /* Đảm bảo media vừa với cột */
+        max-width: 100%;
         border-radius: 6px;
     }
     
@@ -80,7 +90,7 @@
     }
     
     .media-column video {
-        max-height: 250px; /* Giới hạn chiều cao video */
+        max-height: 250px;
     }
   </style>
 </head>
@@ -92,32 +102,45 @@
     <h1>NWJS Memories</h1>
   </header>
 
-  <div class="media-container">
+    <div class="media-container">
       
-    <div class="media-column">
+        <div class="media-column">
       <h2>🖼️ Hình ảnh</h2>
-      <p class="media-title">240824 Hanni Phoning Chat Photo Update</p>
+      
+      <h3 class="album-heading">Album: Phoning</h3>
+      
+      <p class="media-title">240824 Hanni Phoning Chat Photo Update</p>
       <img src="images/pic1.jpg" width="350">
       
-      <p class="media-title">231225 NewJeans Phoning Photo Update</p>
+      <p class="media-title">231225 NewJeans Phoning Photo Update</p>
       <img src="images/pic2.jpg" width="350"> 
-      </div>
+      
+          </div>
 
-    <div class="media-column">
+        <div class="media-column">
       <h2>🎧 Nhạc</h2>
-            <p class="media-title">Supernatural (Winter ver) - NewJeans</p>
+      
+      <h3 class="album-heading">Album: Winter ver</h3>
+      
+      <p class="media-title">Supernatural (Winter ver) - NewJeans</p>
       <audio controls>
           <source src="music/song1.mp3" type="audio/mpeg">
       </audio>
+      
+      <h3 class="album-heading">Album: Band Live Performances</h3>
+      
       <p class="media-title">Bubble Gum (Band Live ver) - NewJeans</p>
        <audio controls>
           <source src="music/song2.mp3" type="audio/mpeg">
       </audio>
     </div>
 
-    <div class="media-column">
+        <div class="media-column">
       <h2>🎬 Video</h2>
-      <p class="media-title">hurt (party 4 u) </p>
+      
+      <h3 class="album-heading">Album: Short video</h3>
+      
+      <p class="media-title">hurt (party 4 u) </p>
       <video width="100%" controls>
           <source src="videos/video1.mp4" type="video/mp4">
       </video>
