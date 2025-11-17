@@ -31,6 +31,26 @@
       font-size: 38px; 
       color: #333;
     }
+    
+    /* STYLE CHO LINK YOUTUBE Ở ĐẦU TRANG */
+    .top-youtube-link {
+        margin-top: -20px; /* Di chuyển lên gần tiêu đề */
+        margin-bottom: 30px; /* Tạo khoảng trống với nội dung bên dưới */
+        font-size: 1.2em;
+    }
+    .top-youtube-link a {
+        color: #FF0000; /* Màu đỏ YouTube */
+        font-weight: bold;
+        text-decoration: none;
+        padding: 8px 15px;
+        border: 2px solid #FF0000;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .top-youtube-link a:hover {
+        background-color: #FF0000;
+        color: #ffffff;
+    }
 
     /* === CẤU TRÚC 3 CỘT (FLEXBOX) === */
     .media-container {
@@ -59,7 +79,7 @@
         text-align: center;
     }
     
-    /* === STYLE ALBUM === */
+    /* === STYLE ALBUM (Vẫn giữ nếu cần cho các cột khác) === */
     .album-heading {
         font-size: 1.4em;
         font-weight: bold;
@@ -77,19 +97,28 @@
         color: #E91E63;
     }
     
-    /* KHẮC PHỤC KÍCH THƯỚC ẢNH VÀ THÊM LIGHTBOX THUMBNAIL */
-    .media-column img {
-        display: block;
-        margin: 10px auto; 
-        max-width: 100%;
-        width: 150px; /* KÍCH THƯỚC NHỎ HƠN KHI HIỂN THỊ */
-        height: 150px; /* KÍCH THƯỚC NHỎ HƠN KHI HIỂN THỊ */
+    /* === GALLERY ẢNH HÀNG NGANG (MỚI) === */
+    .image-gallery {
+        display: flex; /* Dùng flexbox để sắp xếp hàng ngang */
+        flex-wrap: wrap; /* Cho phép xuống dòng nếu không đủ chỗ */
+        justify-content: center; /* Căn giữa các ảnh */
+        gap: 10px; /* Khoảng cách giữa các ảnh */
+        margin-top: 20px;
+    }
+    .image-gallery img {
+        width: 100px; /* Kích thước thumbnail nhỏ */
+        height: 100px; /* Kích thước thumbnail nhỏ */
         object-fit: cover;
-        border-radius: 6px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         cursor: pointer;
-    }
+        transition: transform 0.2s ease;
+    }
+    .image-gallery img:hover {
+        transform: scale(1.05); /* Hiệu ứng nhỏ khi hover */
+    }
 
-    /* CÁC PHẦN TỬ CÒN LẠI */
+    /* CÁC PHẦN TỬ AUDIO/VIDEO */
     .media-column audio, .media-column video, .media-column iframe {
         display: block;
         margin: 10px auto;
@@ -144,6 +173,12 @@
     <h1>NWJS Memories</h1>
   </header>
 
+    <p class="top-youtube-link">
+        <a href="https://www.youtube.com/@memoryofnjws" target="_blank">
+            Truy cập Kênh YouTube của tôi
+        </a>
+    </p>
+
     <div class="media-container">
       
         <div class="media-column">
@@ -151,12 +186,9 @@
       
       <h3 class="album-heading">Album: Phoning Updates</h3>
       
-            <p class="media-title"> 240824 Hanni </p>
-      <img src="images/pic1.jpg" data-lightbox-src="images/pic1.jpg">
-      
-            <p class="media-title"> 231225 NewJeans </p>
-      <img src="images/pic2.jpg" data-lightbox-src="images/pic2.jpg"> 
-    </div>
+        <div class="image-gallery">             <img src="images/pic1.jpg" data-lightbox-src="images/pic1.jpg" alt="240824 Hanni">
+            <img src="images/pic2.jpg" data-lightbox-src="images/pic2.jpg" alt="231225 NewJeans">
+            </div>    </div>
 
         <div class="media-column">
       <h2>🎧 Nhạc</h2>
@@ -179,19 +211,12 @@
 <div class="media-column">
       <h2>🎬 Video</h2>
       
-      <h3 class="album-heading">Album: Short Video (Local)</h3>
+      <h3 class="album-heading">Album: Short Video</h3>
       
             <p class="media-title">hurt (party 4 u) </p>
       <video width="100%" controls>
           <source src="videos/video1.mp4" type="video/mp4">
       </video>
-
-            <h3 class="album-heading" style="margin-top: 30px;">Kênh YouTube Chính Thức</h3>
-      <p style="text-align: center; margin-top: 10px;">
-          <a href="https://www.youtube.com/@memoryofnjws" target="_blank" style="color: #FF0000; font-weight: bold; text-decoration: none;">
-              Truy cập Kênh YouTube của tôi 
-          </a>
-      </p>
     </div>
     
   </div> 
@@ -201,9 +226,8 @@
     </div>
 
     <script>
-        // JavaScript để xử lý Lightbox
         document.addEventListener('DOMContentLoaded', () => {
-            const images = document.querySelectorAll('.media-column img');
+            const images = document.querySelectorAll('.image-gallery img'); // CHỌN ẢNH TRONG GALLERY
             const lightboxOverlay = document.getElementById('lightboxOverlay');
             const lightboxImage = document.getElementById('lightboxImage');
 
@@ -216,7 +240,7 @@
 
             lightboxOverlay.addEventListener('click', () => {
                 lightboxOverlay.classList.remove('active');
-                lightboxImage.src = ''; // Clear image src
+                lightboxImage.src = ''; 
             });
         });
     </script>
