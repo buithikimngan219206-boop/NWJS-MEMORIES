@@ -77,14 +77,16 @@
         color: #E91E63;
     }
     
-    /* KHẮC PHỤC LỖI KÍCH THƯỚC ẢNH */
+    /* KHẮC PHỤC KÍCH THƯỚC ẢNH VÀ THÊM LIGHTBOX THUMBNAIL */
     .media-column img {
         display: block;
         margin: 10px auto; 
         max-width: 100%;
-        height: 250px; /* <--- ĐÃ FIX: Chiều cao đồng nhất */
-        object-fit: cover; /* <--- ĐÃ FIX: Giữ tỷ lệ, không bị méo */
+        width: 150px; /* KÍCH THƯỚC NHỎ HƠN KHI HIỂN THỊ */
+        height: 150px; /* KÍCH THƯỚC NHỎ HƠN KHI HIỂN THỊ */
+        object-fit: cover;
         border-radius: 6px;
+        cursor: pointer;
     }
 
     /* CÁC PHẦN TỬ CÒN LẠI */
@@ -102,6 +104,36 @@
     .media-column video {
         max-height: 250px;
     }
+    
+    /* LIGHTBOX STYLES */
+    .lightbox-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease;
+    }
+
+    .lightbox-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .lightbox-image {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 8px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    }
   </style>
 </head>
 
@@ -120,10 +152,10 @@
       <h3 class="album-heading">Album: Phoning Updates</h3>
       
             <p class="media-title"> 240824 Hanni </p>
-      <img src="images/pic1.jpg">
+      <img src="images/pic1.jpg" data-lightbox-src="images/pic1.jpg">
       
             <p class="media-title"> 231225 NewJeans </p>
-      <img src="images/pic2.jpg"> 
+      <img src="images/pic2.jpg" data-lightbox-src="images/pic2.jpg"> 
     </div>
 
         <div class="media-column">
@@ -154,12 +186,40 @@
           <source src="videos/video1.mp4" type="video/mp4">
       </video>
 
-      <h3 class="album-heading" style="margin-top: 30px;">Link Video (YouTube)</h3>
+            <h3 class="album-heading" style="margin-top: 30px;">Kênh YouTube Chính Thức</h3>
       <p style="text-align: center; margin-top: 10px;">
-          <a href="https://youtu.be/nlaGUdWzJKo" target="_blank" style="color: #4A90E2; font-weight: bold; text-decoration: none;">
-               
+          <a href="https://www.youtube.com/@memoryofnjws" target="_blank" style="color: #FF0000; font-weight: bold; text-decoration: none;">
+              Truy cập Kênh YouTube của tôi 
           </a>
       </p>
     </div>
+    
+  </div> 
+
+    <div class="lightbox-overlay" id="lightboxOverlay">
+        <img class="lightbox-image" id="lightboxImage" src="" alt="Zoomed Image">
+    </div>
+
+    <script>
+        // JavaScript để xử lý Lightbox
+        document.addEventListener('DOMContentLoaded', () => {
+            const images = document.querySelectorAll('.media-column img');
+            const lightboxOverlay = document.getElementById('lightboxOverlay');
+            const lightboxImage = document.getElementById('lightboxImage');
+
+            images.forEach(img => {
+                img.addEventListener('click', () => {
+                    lightboxImage.src = img.getAttribute('data-lightbox-src');
+                    lightboxOverlay.classList.add('active');
+                });
+            });
+
+            lightboxOverlay.addEventListener('click', () => {
+                lightboxOverlay.classList.remove('active');
+                lightboxImage.src = ''; // Clear image src
+            });
+        });
+    </script>
+
 </body>
 </html>
